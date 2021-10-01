@@ -1,18 +1,18 @@
-// extra for expert is the scroll wheel. it will increase size.
+// extra for expert is the scroll wheel. it will increase ball size.
 
 let x = 15;
 let y = 150;
-let x2 = 375;
+let x2 = 1000;
 let y2 = 150;
 let radius = 10;
-let dx = 1;
-let dy = 1;
+let dx = 5;
+let dy = 5;
 let z = 200;
 let z2 = 100;
 let hit = false;
 
 function setup() {
-  createCanvas(400, 400);
+  createCanvas(windowWidth-30, windowHeight-30);
   
 }
 
@@ -22,7 +22,7 @@ function draw() {
   movepong();
   moveandbounce();
   speedincrease();
-  
+  pause();
 }
 
 function shapedraw() {
@@ -34,7 +34,7 @@ function moveandbounce() {
   z += dx;
   z2 += dy;
 
-  if (z > 400) {
+  if (z > windowWidth) {
     game();
   }
   if (z < 0) {
@@ -59,21 +59,21 @@ function moveandbounce() {
 function movepong() {
   if (keyIsDown(87)) {
     // w is up
-    y -= 5;
+    y -= 7;
   }
 
   if (keyIsDown(83)) {
     // s is down
-    y += 5;
+    y += 7;
   }
   if (keyIsDown(UP_ARROW)) {
     // w is up
-    y2 -= 5;
+    y2 -= 7;
   }
 
   if (keyIsDown(DOWN_ARROW)) {
     // s is down
-    y2 += 5;
+    y2 += 7;
   }
 }
 function game() {
@@ -82,6 +82,9 @@ function game() {
   z2 = 100;
   dx=1;
   radius =10;
+  fill(255);
+  textSize(50);
+  text("p1 wins", windowWidth/2, 50);
 }
 function game2(){
   console.log("p2 win");
@@ -89,6 +92,10 @@ function game2(){
   z2 = 100;
   dx=1;
   radius = 10;
+  fill(255);
+  textSize(50);
+  text("p2 wins", windowWidth/2, 50);
+  
 }
 function mousePressed(){
   
@@ -102,4 +109,9 @@ function speedincrease(){
 function mouseWheel(event){
   radius += 5;
   return false;
+}
+function pause(){
+  if (keyIsDown(82)){
+    dx = 0;
+  }
 }
