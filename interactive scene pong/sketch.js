@@ -1,21 +1,21 @@
 // extra for expert is the scroll wheel. it will increase ball size.
-
-let x = 15;
-let y = 150;
-let x2 = 1550;
-let y2 = 150;
+// dx and dy are the x and y speed
+let leftpadalx = 15;
+let leftpadaly = 150;
+let rightpadalx = 1550;
+let rightpadaly = 150;
 let radius = 10;
 let dx = 5;
 let dy = 5;
-let z = 200;
-let z2 = 100;
+let ballx = 200;
+let bally = 100;
 let hit = false;
 
 function setup() {
   createCanvas(windowWidth-30, windowHeight-30);
   
 }
-
+//draw setup
 function draw() {
   background(0);
   shapedraw();
@@ -23,96 +23,108 @@ function draw() {
   moveandbounce();
   speedincrease();
   pause();
-  
+  fill(255);
+  textSize(25);
+  text("play on full screen,r is pause, lmb is to start again, scroll wheel is to increase ball size", 10, 50);
 }
-
+//draws padals and ball
 function shapedraw() {
-  rect(x, y, 10, 70);
-  rect(x2, y2, 10, 70);
-  circle(z, z2, radius);
+  rect(leftpadalx, leftpadaly, 10, 70);
+  rect(rightpadalx, leftpadaly, 10, 70);
+  circle(ballx, bally, radius);
 }
+//moves ball and brings back to start point, as well as the collision of padal and ball.
 function moveandbounce() {
-  z += dx;
-  z2 += dy;
+  ballx += dx;
+  bally += dy;
 
-  if (z > windowWidth) {
+  if (ballx > windowWidth) {
     game();
   }
-  if (z < 0) {
+  if (ballx < 0) {
     game2();
   }
-  if (z2 + radius >= height || z2 - radius <= 0) {
+  if (bally + radius >= height || bally - radius <= 0) {
     dy = -dy;
     
     
   }
-  hit = collideRectCircle(x2, y2, 10, 70, z, z2, radius);
+  hit = collideRectCircle(rightpadalx, rightpadaly, 10, 70, ballx, bally, radius);
   if (hit === true){
     dx =-dx ;
   }
-  hit = collideRectCircle(x, y, 10, 70, z, z2, radius);
+  hit = collideRectCircle(leftpadalx, leftpadaly, 10, 70, ballx, bally, radius);
   if (hit === true){
     dx =-dx ;
   }
  
     
 }
+//moves the right and left padal.
 function movepong() {
   if (keyIsDown(87)) {
     // w is up
-    y -= 7;
+    leftpadaly -= 7;
   }
 
   if (keyIsDown(83)) {
     // s is down
-    y += 7;
+    leftpadaly += 7;
   }
   if (keyIsDown(UP_ARROW)) {
-    // w is up
-    y2 -= 7;
+    // up arrow is up
+    rightpadaly -= 7;
   }
 
   if (keyIsDown(DOWN_ARROW)) {
-    // s is down
-    y2 += 7;
+    // down arrow is down
+    rightpadaly += 7;
   }
 }
+//brings ball to original postion and says player one wins
 function game() {
   console.log("p1 win");
-  z=200;
-  z2 = 100;
+  ballx=200;
+  bally = 100;
   dx=1;
   radius =10;
   fill(255);
-  textSize(50);
+  textSize(100);
   text("p1 wins", windowWidth/2, 50);
 }
+// brings ball to original and says player 2 wins
 function game2(){
   console.log("p2 win");
-  z=200;
-  z2 = 100;
+  ballx=200;
+  bally = 100;
   dx=1;
   radius = 10;
   fill(255);
-  textSize(50);
+  textSize(100);
   text("p2 wins", windowWidth/2, 50);
   
 }
+//increase speed on mouse press
 function mousePressed(){
   
   dx = dx+1;
+  
 }
+// increases speed on colliision
 function speedincrease(){
   if (hit===true){
     dx = dx +1;
   }
 }
+// increases the size of the ball
 function mouseWheel(event){
   radius += 5;
   return false;
 }
+// press r to stop the x movment of the ball
 function pause(){
   if (keyIsDown(82)){
     dx = 0;
+    
   }
 }
