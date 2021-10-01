@@ -2,7 +2,7 @@
 
 let x = 15;
 let y = 150;
-let x2 = 1000;
+let x2 = 1550;
 let y2 = 150;
 let radius = 10;
 let dx = 5;
