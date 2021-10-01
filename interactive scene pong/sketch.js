@@ -1,4 +1,4 @@
-// extra for expert is the scroll wheel. it will increase movement.
+// extra for expert is the scroll wheel. it will increase size.
 
 let x = 15;
 let y = 150;
