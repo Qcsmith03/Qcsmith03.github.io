@@ -23,6 +23,7 @@ function draw() {
   moveandbounce();
   speedincrease();
   pause();
+  
 }
 
 function shapedraw() {
