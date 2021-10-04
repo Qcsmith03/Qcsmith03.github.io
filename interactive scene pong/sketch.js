@@ -94,9 +94,11 @@ function game() {
   bally = 100;
   dx=1;
   radius =10;
+  
   fill(255);
   textSize(100);
   text("p1 wins", windowWidth/2, 75);
+  
 }
 // brings ball to original and says player 2 wins
 function game2(){
@@ -108,8 +110,8 @@ function game2(){
   fill(255);
   textSize(100);
   text("p2 wins", windowWidth/2, 75);
-  
 }
+
 //increase speed on mouse press
 function mousePressed(){
   
