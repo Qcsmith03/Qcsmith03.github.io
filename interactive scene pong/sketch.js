@@ -23,15 +23,19 @@ function draw() {
   moveandbounce();
   speedincrease();
   pause();
-  fill(255);
-  textSize(25);
+  
   //rules
-  text("play on full screen,r is pause, lmb is to start again, scroll wheel is to increase ball size", 10, 50);
+  while (millis <= 10000){
+    fill(255);
+    textSize(25);
+    text("play on full screen,r is pause, lmb moves ball right, scroll wheel is to increase ball size", 10, 50);
+  }
+  console.log(millis);
 }
 //draws padals and ball
 function shapedraw() {
   rect(leftpadalx, leftpadaly, 10, 70);
-  rect(rightpadalx, leftpadaly, 10, 70);
+  rect(rightpadalx, rightpadaly, 10, 70);
   circle(ballx, bally, radius);
 }
 //moves ball and brings back to start point, as well as the collision of padal and ball.
@@ -91,7 +95,7 @@ function game() {
   radius =10;
   fill(255);
   textSize(100);
-  text("p1 wins", windowWidth/2, 50);
+  text("p1 wins", windowWidth/2, 75);
 }
 // brings ball to original and says player 2 wins
 function game2(){
@@ -102,7 +106,7 @@ function game2(){
   radius = 10;
   fill(255);
   textSize(100);
-  text("p2 wins", windowWidth/2, 50);
+  text("p2 wins", windowWidth/2, 75);
   
 }
 //increase speed on mouse press
