@@ -10,6 +10,7 @@ let dy = 5;
 let ballx = 200;
 let bally = 100;
 let hit = false;
+let texttime = 0;
 
 function setup() {
   createCanvas(windowWidth-30, windowHeight-30);
@@ -25,7 +26,7 @@ function draw() {
   pause();
   
   //rules
-  while (millis <= 10000){
+  if (millis() < texttime + 5000){
     fill(255);
     textSize(25);
     text("play on full screen,r is pause, lmb moves ball right, scroll wheel is to increase ball size", 10, 50);
