@@ -25,6 +25,7 @@ function draw() {
   pause();
   fill(255);
   textSize(25);
+  //rules
   text("play on full screen,r is pause, lmb is to start again, scroll wheel is to increase ball size", 10, 50);
 }
 //draws padals and ball
