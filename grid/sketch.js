@@ -13,6 +13,20 @@ function draw() {
   background(220);
   displayGrid();
 }
+function mousePressed(){
+  let cellWidth= width/gridsize;
+  let cellHeight = height/gridsize;
+  
+  let cellx = Math.floor(mouseX/cellWidth);
+  let celly= Math.floor(mouseY/cellHeight);
+
+  if(grid[celly][cellx]===1){
+    grid[celly][cellx]=0;  
+  }
+  else if (grid[celly][cellx]===0){
+    grid[celly][cellx]=1;
+  }
+}
 function displayGrid(){
   let cellWidth= width/gridsize;
   let cellHeight = height/gridsize;
