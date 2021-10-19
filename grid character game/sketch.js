@@ -8,7 +8,7 @@ let playerX = 0;
 let playerY = 0;
 
 function preload() {
-  level = loadJSON("assets/level1.json"); //assumes gridSize is 20
+  level = loadJSON("assets/level.json"); //assumes gridSize is 20
 }
 
 function setup() {
