@@ -2,7 +2,7 @@
 // Quinten Smith
 
 let grid;
-let gridSize = 2;
+let gridSize = 3;
 let cellWidth, cellHeight;
 
 function setup() {
@@ -16,6 +16,7 @@ function setup() {
 function draw() {
   background(220);
   displayGrid();
+  
 }
 function displayGrid() {
   for (let y=0; y<gridSize; y++) {
@@ -33,8 +34,21 @@ function displayGrid() {
       if (grid[y][x]===2){
         fill("yellow");
       }
+      if (grid[y][x]===3){
+        fill("white");
+      }
+      if (grid[y][x]===4){
+        fill("black");
+      }
       strokeWeight(3);
       rect(x*cellWidth, y*cellHeight, cellWidth, cellHeight);
+      if (grid[y][x]===3){
+        fill("black");
+        textSize(cellWidth/30);
+        textAlign(CENTER,CENTER);
+        text("rules: return the colors in order of their apperance", x*cellWidth +cellWidth/2,y*cellHeight+cellHeight/2);
+      }
+      
     }
   }
 }
@@ -66,9 +80,14 @@ function mousePressed(){
     grid[celly][cellx]=2;
   }
   else if (grid[celly][cellx]===2){
+    grid[celly][cellx]=3;
+  }
+  else if (grid[celly][cellx]===3){
+    grid[celly][cellx]=4;
+  }
+  else if (grid[celly][cellx]===4){
     grid[celly][cellx]=0;
   }
-
 }
 function createRandom2DArray(rows,cols){
   let grid=[];
@@ -76,10 +95,10 @@ function createRandom2DArray(rows,cols){
     grid.push([]);
     for(let x=0;x<cols;x++){
       if (random(100)<50){
-        grid[y].push(0);
+        grid[y].push(3);
       }
       else {
-        grid[y].push(1);
+        grid[y].push(4);
       }
     }
   }
