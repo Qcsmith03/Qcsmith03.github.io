@@ -52,7 +52,7 @@ function displayGrid() {
         fill("white");
         textSize(cellWidth/4);
         textAlign(CENTER,CENTER);
-        text("click z to start the game. get the red to the blue. wasd to move. lmb to go through black blocks", x*cellWidth +cellWidth/2,y*cellHeight+cellHeight/2);
+        text("Get the red to the blue. wasd to move. lmb to go through black blocks", x*cellWidth +cellWidth/2,y*cellHeight+cellHeight/2);
       }
       
     }
@@ -100,7 +100,7 @@ function createRandom2DArray(rows,cols){
   for (let y=0;y<rows;y++){
     grid.push([]);
     for(let x=0;x<cols;x++){
-      if (random(100)<49){
+      if (random(100)<50){
         grid[y].push(0);
       }
       else {
@@ -118,8 +118,8 @@ function keyPressed(){
   if (keyCode===69){
     grid =createEmpty2DArray(gridSize,gridSize);
   }
-  if (key==="z"){
-    start();
+  if (keyCode === 66){
+    blueBlock();
   }
   
   if (key === "s") {
@@ -150,6 +150,9 @@ function tryToMoveTo(newX, newY) {
     }
   }
 }
-function start(){
+function blueBlock(){
   
+  if (random(100)<50){
+    
+  }
 }
