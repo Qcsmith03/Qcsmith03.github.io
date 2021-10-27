@@ -118,7 +118,7 @@ function keyPressed(){
   if (keyCode===69){
     grid =createEmpty2DArray(gridSize,gridSize);
   }
-  if (keyCode === 66){
+  if (keyCode === 66){// key b
     blueBlock();
   }
   
@@ -152,7 +152,7 @@ function tryToMoveTo(newX, newY) {
 }
 function blueBlock(){
   
-  if (random(100)<50){
-    
-  }
+
+  
+  
 }
