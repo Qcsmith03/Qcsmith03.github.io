@@ -6,9 +6,11 @@ let gridSize = 50;
 let cellWidth, cellHeight;
 let playery=0;
 let playerx=0;
+let state;
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
+  state="startScreen";
   cellWidth = width/gridSize;
   cellHeight = height/gridSize;
   //grid = createEmpty2DArray(gridSize,gridSize);
@@ -19,9 +21,16 @@ function setup() {
 }
 
 function draw() {
-  background(220);
-  displayGrid();
-  
+  if (state==="startScreen"){
+    background(255);
+    fill("black");
+    textSize(20);
+    text("Get the red to the blue. wasd to move. lmb to go through black blocks. g to start", 50,100);
+  }
+  else if (state === "game"){
+    background(220);
+    displayGrid();
+  }
 }
 function displayGrid() {
   for (let y=0; y<gridSize; y++) {
@@ -103,23 +112,26 @@ function createRandom2DArray(rows,cols){
       if (random(100)<50){
         grid[y].push(0);
       }
+      else if (random(100)<0.1){
+        grid[y].push(3);
+      
+      }
       else {
         grid[y].push(1);
       }
-      
     }
   }
   return grid;
 }
 function keyPressed(){
-  if (keyCode===82){
+  if (keyCode===82){ //key r
     setup();
   }
-  if (keyCode===69){
+  if (keyCode===69){ // key e
     grid =createEmpty2DArray(gridSize,gridSize);
   }
-  if (keyCode === 66){// key b
-    blueBlock();
+  if (keyCode === 71){// key g
+    state==="game";
   }
   
   if (key === "s") {
@@ -151,7 +163,14 @@ function tryToMoveTo(newX, newY) {
   }
 }
 function blueBlock(){
+  // createCanvas(windowWidth, windowHeight);
+  // cellWidth = width/gridSize;
+  // cellHeight = height/gridSize;
+  // //grid = createEmpty2DArray(gridSize,gridSize);
   
+  // grid = createRandom2DArray(gridSize,gridSize);
+  
+  // grid[playery][playerx] = 9;
 
   
   
