@@ -25,11 +25,13 @@ function draw() {
     background(255);
     fill("black");
     textSize(20);
-    text("Get the red to the blue. wasd to move. lmb to go through black blocks. g to start", 50,100);
+    text("Get the red to the blue. wasd to move. lmb to go through black blocks. g to start!", 50,100);
+    text("Press r to restart and change the maze. press r once next to a blue", 70,150);
   }
   else if (state === "game"){
     background(220);
     displayGrid();
+    
   }
 }
 function displayGrid() {
@@ -58,10 +60,10 @@ function displayGrid() {
       strokeWeight(3);
       rect(x*cellWidth, y*cellHeight, cellWidth, cellHeight);
       if (grid[y][x]===4){
-        fill("white");
-        textSize(cellWidth/4);
-        textAlign(CENTER,CENTER);
-        text("Get the red to the blue. wasd to move. lmb to go through black blocks", x*cellWidth +cellWidth/2,y*cellHeight+cellHeight/2);
+        //fill("white");
+        //textSize(cellWidth/4);
+        //textAlign(CENTER,CENTER);
+        //text("Get the red to the blue. wasd to move. lmb to go through black blocks", x*cellWidth +cellWidth/2,y*cellHeight+cellHeight/2);
       }
       
     }
@@ -130,8 +132,12 @@ function keyPressed(){
   if (keyCode===69){ // key e
     grid =createEmpty2DArray(gridSize,gridSize);
   }
-  if (keyCode === 71){// key g
-    state==="game";
+  if (key === "g"){// key g
+    state="game";
+    grid[playery][playerx]=0;
+    playery = 0;
+    playerx = 0;
+    grid[playery][playerx]=9;
   }
   
   if (key === "s") {
@@ -173,5 +179,5 @@ function blueBlock(){
   // grid[playery][playerx] = 9;
 
   
-  
+
 }
