@@ -31,9 +31,22 @@ function draw() {
   else if (state === "game"){
     background(220);
     displayGrid();
-    
+    if (grid[playery+1][playerx]===3){
+      state="startScreen";
+    }
+    else if (grid[playery-1][playerx]===3){
+      state="startScreen";
+    }
+    else if (grid[playery][playerx+1]===3){
+      state="startScreen";
+    }
+    else if (grid[playery][playerx-1]===3){
+      state="startScreen";
+    }
   }
+    
 }
+
 function displayGrid() {
   for (let y=0; y<gridSize; y++) {
     for (let x=0; x<gridSize; x++) {
@@ -93,18 +106,7 @@ function mousePressed(){
   else if (grid[celly][cellx]===0){
     grid[celly][cellx]=1;
   }
-  // else if (grid[celly][cellx]===9){
-  //   grid[celly][cellx]=2;
-  // }
-  // else if (grid[celly][cellx]===2){
-  //   grid[celly][cellx]=3;
-  // }
-  // else if (grid[celly][cellx]===3){
-  //   grid[celly][cellx]=4;
-  // }
-  // else if (grid[celly][cellx]===4){
-  //   grid[celly][cellx]=9;
-  // }
+  
 }
 function createRandom2DArray(rows,cols){
   let grid=[];
