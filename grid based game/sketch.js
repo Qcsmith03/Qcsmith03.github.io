@@ -1,56 +1,55 @@
 // grid based game
 // Quinten Smith
-
+// global variables
 let grid;
 let gridSize = 50;
 let cellWidth, cellHeight;
 let playery=0;
 let playerx=0;
 let state;
+let counter=0;
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
+  //starts screen of the game.
   state="startScreen";
   cellWidth = width/gridSize;
   cellHeight = height/gridSize;
-  //grid = createEmpty2DArray(gridSize,gridSize);
   
   grid = createRandom2DArray(gridSize,gridSize);
-  
+  //you are the red block
   grid[playery][playerx] = 9;
 }
 
 function draw() {
+  //draws the insturctions and point counter.
   if (state==="startScreen"){
     background(255);
     fill("black");
     textSize(20);
     text("Get the red to the blue. wasd to move. lmb to go through black blocks. g to start!", 50,100);
-    text("Press r to restart and change the maze. press r once next to a blue", 70,150);
+    text("Press r to restart and change the maze if no blue.", 70,150);
+    text(counter,50,200);
   }
   else if (state === "game"){
     background(220);
     displayGrid();
-    // if(grid[playery]>=0 && grid[playery] <gridSize && grid[playerx]>=0 && grid[playerx]<gridSize){
-    // // swap(cellWidth,cellHeight);
-    // // swap(cellWidth+1,cellHeight);
-    // // swap(cellWidth-1,cellHeight);
-    // // swap(cellWidth,cellHeight+1);
-    // // swap(cellWidth,cellHeight-1);
-    //   if (grid[playery+1][playerx]===3){
-    //     state="startScreen";
-    //   }
-    //   if (grid[playery-1][playerx]===3){
-    //     state="startScreen";
-    //   }
-    //   if (grid[playery][playerx+1]===3){
-    //     console.log("here!!!");
-    //     state="startScreen";
-    //   }
-    //   if (grid[playery][playerx-1]===3){
-    //     state="startScreen";
-    //   }
-    // }
+    //when red is over blue you get a point
+    if (grid[playery+1][playerx]===3){
+      counter ++;
+      grid = createRandom2DArray(gridSize,gridSize);
+      state="startScreen";
+      
+    }
+    //red next to blue you get a point
+    if (grid[playery][playerx+1]===3){
+      counter++;
+      grid = createRandom2DArray(gridSize,gridSize);
+      console.log("here!!!");
+      state="startScreen";
+      
+    }
+    
   }
     
 }
@@ -58,49 +57,31 @@ function draw() {
 function displayGrid() {
   for (let y=0; y<gridSize; y++) {
     for (let x=0; x<gridSize; x++) {
-      if (grid[y][x] === 4) {
-        fill("green");
-      //fill(random(255),random(255),random(255));
-      }
+      //the colors on the grid
       if (grid[y][x] === 3) {
         fill("blue");
       }
       if (grid[y][x] === 9) {
         fill("red");
       }
-      // if (grid[y][x]===2){
-      //   fill("yellow");
-      // }
+      
       if (grid[y][x]===0){
         fill("white");
       }
       if (grid[y][x]===1){
         fill("black");
       }
-      
+      //the squares of the grid
       strokeWeight(3);
       rect(x*cellWidth, y*cellHeight, cellWidth, cellHeight);
-      if (grid[y][x]===4){
-        //fill("white");
-        //textSize(cellWidth/4);
-        //textAlign(CENTER,CENTER);
-        //text("Get the red to the blue. wasd to move. lmb to go through black blocks", x*cellWidth +cellWidth/2,y*cellHeight+cellHeight/2);
-      }
+      
       
     }
   }
 }
+//empty grid no use
 
-function createEmpty2DArray(rows, cols) {
-  let board = [];
-  for (let y=0; y<rows; y++) {
-    board.push([]);
-    for (let x=0; x<cols; x++) {
-      board[y].push(0);
-    }
-  }
-  return board;
-}
+// changes black to white and vise versa on a lmb click, used for getting through black blocks
 function mousePressed(){
   let cellWidth= width/gridSize;
   let cellHeight = height/gridSize;
@@ -116,6 +97,7 @@ function mousePressed(){
   }
   
 }
+// creates maze
 function createRandom2DArray(rows,cols){
   let grid=[];
   for (let y=0;y<rows;y++){
@@ -135,37 +117,35 @@ function createRandom2DArray(rows,cols){
   }
   return grid;
 }
+// start button, no blue squares button and the empty grid button, along with move wasd.
 function keyPressed(){
-  if (keyCode===82){ //key r
+  if (keyCode===82){ //key r creates maze
     setup();
   }
-  if (keyCode===69){ // key e
-    grid =createEmpty2DArray(gridSize,gridSize);
-  }
-  if (key === "g"){// key g
+  
+  if (key === "g"){// key g starts game
     state="game";
     grid[playery][playerx]=0;
     playery = 0;
     playerx = 0;
     grid[playery][playerx]=9;
   }
-  if (key==="b"){
-    swap();
-  }
   
-  if (key === "s") {
+  // move the red square
+  if (key === "s") {// down
     tryToMoveTo(playerx, playery+1);
   }
-  else if (key === "w") {
+  else if (key === "w") {// up
     tryToMoveTo(playerx, playery-1);
   }
-  else if (key === "a") {
+  else if (key === "a") {// left
     tryToMoveTo(playerx-1, playery);
   }
-  else if (key === "d") {
+  else if (key === "d") {// right
     tryToMoveTo(playerx+1, playery);
   }
 }
+// code for the move keys
 function tryToMoveTo(newX, newY) {
   //make sure you're on the grid
   if (newX >= 0 && newY >= 0 && newX < gridSize && newY < gridSize) {
@@ -178,29 +158,6 @@ function tryToMoveTo(newX, newY) {
     
       //set new player spot to red
       grid[playery][playerx] = 9;
-    }
-  }
-}
-function blueBlock(){
-  // createCanvas(windowWidth, windowHeight);
-  // cellWidth = width/gridSize;
-  // cellHeight = height/gridSize;
-  // //grid = createEmpty2DArray(gridSize,gridSize);
-  
-  // grid = createRandom2DArray(gridSize,gridSize);
-  
-  // grid[playery][playerx] = 9;
-
-  
-
-}
-function swap(playerx,playery){
-  if(playerx>=0 && playerx <gridSize && playery>=0 && playery<gridSize){
-    if(grid[playery][playerx]===9){
-      grid[playery][playerx]=3;  
-    }
-    else if (grid[playery][playerx]===3){
-      grid[playery][playerx]=9;
     }
   }
 }
