@@ -31,26 +31,26 @@ function draw() {
   else if (state === "game"){
     background(220);
     displayGrid();
-    if(grid[playery]>=0 && grid[playery] <gridSize && grid[playerx]>=0 && grid[playerx]<gridSize){
-    // swap(cellWidth,cellHeight);
-    // swap(cellWidth+1,cellHeight);
-    // swap(cellWidth-1,cellHeight);
-    // swap(cellWidth,cellHeight+1);
-    // swap(cellWidth,cellHeight-1);
-      if (grid[playery+1][playerx]===3){
-        state="startScreen";
-      }
-      if (grid[playery-1][playerx]===3){
-        state="startScreen";
-      }
-      if (grid[playery][playerx+1]===3){
-        console.log("here!!!");
-        state="startScreen";
-      }
-      if (grid[playery][playerx-1]===3){
-        state="startScreen";
-      }
-    }
+    // if(grid[playery]>=0 && grid[playery] <gridSize && grid[playerx]>=0 && grid[playerx]<gridSize){
+    // // swap(cellWidth,cellHeight);
+    // // swap(cellWidth+1,cellHeight);
+    // // swap(cellWidth-1,cellHeight);
+    // // swap(cellWidth,cellHeight+1);
+    // // swap(cellWidth,cellHeight-1);
+    //   if (grid[playery+1][playerx]===3){
+    //     state="startScreen";
+    //   }
+    //   if (grid[playery-1][playerx]===3){
+    //     state="startScreen";
+    //   }
+    //   if (grid[playery][playerx+1]===3){
+    //     console.log("here!!!");
+    //     state="startScreen";
+    //   }
+    //   if (grid[playery][playerx-1]===3){
+    //     state="startScreen";
+    //   }
+    // }
   }
     
 }
@@ -149,6 +149,9 @@ function keyPressed(){
     playerx = 0;
     grid[playery][playerx]=9;
   }
+  if (key==="b"){
+    swap();
+  }
   
   if (key === "s") {
     tryToMoveTo(playerx, playery+1);
@@ -191,13 +194,13 @@ function blueBlock(){
   
 
 }
-// function swap(x,y){
-//   if(x>=0 && x <gridSize && y>=0 && y<gridSize){
-//     if(grid[y][x]===1){
-//       grid[y][x]=0;  
-//     }
-//     else if (grid[y][x]===0){
-//       grid[y][x]=1;
-//     }
-//   }
-// }
+function swap(playerx,playery){
+  if(playerx>=0 && playerx <gridSize && playery>=0 && playery<gridSize){
+    if(grid[playery][playerx]===9){
+      grid[playery][playerx]=3;  
+    }
+    else if (grid[playery][playerx]===3){
+      grid[playery][playerx]=9;
+    }
+  }
+}
