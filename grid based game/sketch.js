@@ -37,6 +37,7 @@ function draw() {
     //when red is over blue you get a point
     if (grid[playery+1][playerx]===3){
       counter ++;
+      
       grid = createRandom2DArray(gridSize,gridSize);
       state="startScreen";
       
@@ -44,6 +45,7 @@ function draw() {
     //red next to blue you get a point
     if (grid[playery][playerx+1]===3){
       counter++;
+      
       grid = createRandom2DArray(gridSize,gridSize);
       console.log("here!!!");
       state="startScreen";
