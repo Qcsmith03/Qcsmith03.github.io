@@ -1,7 +1,7 @@
 // Game of Life
 
 let grid;
-let gridSize = 80;
+let gridSize = 100;
 let cellWidth, cellHeight;
 let autoPlay =false;
 let gun;
